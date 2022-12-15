@@ -1,0 +1,287 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"
+    integrity="sha256-7lWo7cjrrponRJcS6bc8isfsPDwSKoaYfGIHgSheQkk=" crossorigin="anonymous"></script>
+
+<div id="page-top">
+    <h1>Dashboard</h1>
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <h3>Estadisticas de hoy</h3>
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between  align-items-center mb-4"></div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card textwhite bg-info text-white fw-bold text-center shadow">
+                                <div class="card-body">
+                                    <p class="m-0 fs-4">Total ordenes</p>
+                                    <p class="text-white small m-0 fs-1">{{this.total}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card textwhite bg-info text-white fw-bold text-center shadow">
+                                <div class="card-body">
+                                    <p class="m-0 fs-4">Ingresos Globales de Hoy</p>
+                                    <div class="d-inline-flex">
+                                        <div>
+                                            <p class="text-white small m-0 fs-1 pe-5">{{this.totalfacturadobs}} </p>
+                                        </div>
+                                        <div>
+                                            <p class="text-white small m-0 fs-1">{{this.totalfacturadodolares}} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-start-primary py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-info fw-bold text-xs mb-1">
+                                                <span>Pendientes</span>
+                                            </div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>{{this.pendientes}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-clock fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-start-info py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-info fw-bold text-xs mb-1">
+                                                <span>Positivas</span>
+                                            </div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>{{this.positivas}}</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-plus fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-start-success py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-info fw-bold text-xs mb-1">
+                                                <span>Negativas</span>
+                                            </div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>{{this.negativas}}</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-minus fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-start-warning py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-info fw-bold text-xs mb-1">
+                                                <span>Anuladas</span>
+                                            </div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>{{this.anuladas}}</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-cancel fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-xl-12 col-xxl-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-info fw-bold m-0">Grafico</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myChart2" style="height: 300px"></canvas>
+                                        <script>
+                                            const ctx = document.getElementById('myChart2').getContext('2d');
+
+                                            const dataorder = [{{this.pendientes}}, {{this.positivas}},{{this.negativas}}, {{this.anuladas}}]
+                                            const myChart = new Chart(ctx, {
+                                                type: 'bar',
+                                                data: {
+                                                    labels: ['Pendientes', 'Negativas', 'Positivas', 'Anuladas'],
+                                                    datasets: [{
+                                                        label: 'Ordenes',
+                                                        data: dataorder,
+                                                        backgroundColor: [
+                                                            'rgba(255, 99, 132, 0.2)',
+                                                            'rgba(30,144,255, 0.2)',
+                                                            'rgba(255,127,80, 0.2)',
+                                                            'rgba(255,140,0, 0.2)',
+                                                        ],
+                                                        borderWidth: 2
+                                                    }
+
+                                                    ]
+                                                },
+                                                options: {
+                                                    responsive: true,
+                                                    maintainAspectRatio: false,
+                                                    scaleOverride: true,
+                                                    scales: {
+                                                        y: {
+                                                            ticks: {
+                                                                // forces step size to be 50 units
+                                                                stepSize: 1
+                                                            }
+
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="text-primary fw-bold m-0">Projects</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="small fw-bold">Server migration<span class="float-end">20%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: 20%;"><span
+                                                class="visually-hidden">20%</span></div>
+                                    </div>
+                                    <h4 class="small fw-bold">Sales tracking<span class="float-end">40%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: 40%;"><span
+                                                class="visually-hidden">40%</span></div>
+                                    </div>
+                                    <h4 class="small fw-bold">Customer Database<span class="float-end">60%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: 60%;"><span
+                                                class="visually-hidden">60%</span></div>
+                                    </div>
+                                    <h4 class="small fw-bold">Payout Details<span class="float-end">80%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: 80%;"><span
+                                                class="visually-hidden">80%</span></div>
+                                    </div>
+                                    <h4 class="small fw-bold">Account setup<span class="float-end">Complete!</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: 100%;"><span
+                                                class="visually-hidden">100%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card textwhite bg-primary text-white shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Primary</p>
+                                            <p class="text-white-50 small m-0">#4e73df</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card textwhite bg-success text-white shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Success</p>
+                                            <p class="text-white-50 small m-0">#1cc88a</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card textwhite bg-info text-white shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Info</p>
+                                            <p class="text-white-50 small m-0">#36b9cc</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card textwhite bg-warning text-white shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Warning</p>
+                                            <p class="text-white-50 small m-0">#f6c23e</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card textwhite bg-danger text-white shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Danger</p>
+                                            <p class="text-white-50 small m-0">#e74a3b</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card textwhite bg-secondary text-white shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Secondary</p>
+                                            <p class="text-white-50 small m-0">#858796</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script src="assets/js/bs-init.js"></script>
+<script src="assets/js/theme.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    const dataorder = [{{ this.pendientes }}, { { this.positivas } }, { { this.negativas } }, { { this.anuladas } }]
+
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Pendientes', 'Negativas', 'Positivas', 'Anuladas'],
+            datasets: [{
+                label: 'Ordenes',
+                data: dataorder,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(30,144,255, 0.2)',
+                    'rgba(255,127,80, 0.2)',
+                    'rgba(255,140,0, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+
+        }
+    });
+</script>

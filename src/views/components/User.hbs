@@ -1,0 +1,29 @@
+<div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+
+      <div class="card border-secondary mb-3">
+        <div class="card-header">Cliente {{this.id}}
+          <div class="text-right" style="display: inline-flex; float: right;">
+            <a href="user/deleteUser/{{this._id}}" type="button" class="btn btn-danger">Eliminar</a>
+            <a href="user/updateUser/{{this._id}}" type="button" class="btn btn-warning">Editar</a>
+          </div>
+        </div>
+        <div class="card-body text-secondary">
+          <h5 class="card-title">Datos personales</h5>
+          <p class="card-subtitle fw-bolder">Nombre y Apellido:</p>
+          <p>{{this.fname}} {{this.lname}}</p>
+          <p class="card-subtitle fw-bolder">Pasaporte:</p>
+          <p>{{this.passport}}</p>
+          <p class="card-subtitle fw-bolder">Fecha de Nacimiento:</p>
+          <p>{{this.bdate}}</p>
+          <p class="card-subtitle fw-bolder">Correo:</p>
+          <p>{{this.mail}}</p>
+          <p class="card-subtitle fw-bolder">Cliente creado:</p>
+          <p>{{this.createdAt}}</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

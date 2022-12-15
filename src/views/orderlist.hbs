@@ -1,0 +1,83 @@
+{{#if orders}}
+<div class="container">
+    <div class="row  align-items-center">
+        <div class="col-md pb-3">
+            <h1>Bandeja de ordenes </h1>
+            <span class="badge bg-info text-wrap align-middle" style="font-size: medium;">
+                Hay {{orders.length}} ordenes
+            </span>
+        </div>
+        <div class="col-md form-control ">
+            <form class="row row-cols-lg-auto g-3 align-items-center" class="form-control" action="/order/orderlist"
+                method="get">
+                <div class="col">
+                    <div class="form-floating">
+                        <input class="form-control text-muted" type="date" name="startdate" id="startdate">
+                        <label for="startdate">Desde: </label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <input class="form-control text-muted" type="date" name="enddate" id="enddate">
+                        <label for="enddate">Desde: </label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <select name="filter" class="form-control" id="filter">
+                            <option value="today" selected>Hoy</option>
+                            <option value="all"> Todas</option>
+                            <option value="pos"> Positivas</option>
+                            <option value="neg"> Negativas</option>
+                            <option value="anulado"> Anuladas</option>
+                            <option value="pen"> Pendientes</option>
+                        </select>
+                        <label for="filter">Filtro</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <button class="btn btn-info text-white" type="submit">Buscar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    startdate.value = new Date().toISOString().slice(0, -14);
+    enddate.value = new Date().toISOString().slice(0, -14);
+
+</script>
+
+
+
+
+
+
+
+
+
+<!-- Example single danger button -->
+
+
+
+
+
+{{#each orders }}
+{{> Order}}
+<a id="neworder" href="/order" class="shadow"><i class="fa-solid fa-plus "> </i> Nueva Orden </a>
+
+{{/each}}
+{{else}}
+
+
+<div class="container">
+    <div class="row  justify-content-center aligh-items-center">
+        <div class="col-6">
+            <h1> No hay ordenes, puedes crear una pulsando aqui. </h1>
+            <a class="shadow" id="neworder1" href="/order"><i class="fa-solid fa-plus"> </i> Crear orden </a>
+        </div>
+    </div>
+</div>
+
+{{/if}}

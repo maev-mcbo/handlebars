@@ -1,0 +1,16 @@
+{{#if users}}
+
+      <h1>Listado de Usuarios</h1>
+      {{#each users }}
+            {{> User}}
+      {{/each}}
+{{else}}
+      <div class="container">
+    <div class="row justify-content-center aligh-items-center">
+    <div class="col-6">    
+    <h1> No hay usuarios, puedes agregar mas pulsando aqui.  </h1>
+    <a id="neworder1" href="/user/adduser"><i  class="fa-solid fa-plus"> </i> Crear usuario </a>
+    </div>
+    </div>
+</div>
+{{/if}}

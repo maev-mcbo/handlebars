@@ -1,0 +1,33 @@
+<div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+      <h1>Agregar Usuario</h1>
+      <form action="/user/adduser" method="post">
+       <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <div class="mb-3 form-control">
+          <label for="fname" class="form-label">Nombre:</label>
+          <input type="text" class="form-control" name="fname" id="" aria-describedby="help-fname" placeholder="">
+          <small id="help-name" class="form-text text-muted">Por favor ingrese Nombre</small>
+          <br>
+          <label for="lname" class="form-label">Apellido:</label>
+          <input type="text" class="form-control" name="lname" id="" aria-describedby="help-lname" placeholder="">
+          <small id="help-lname" class="form-text text-muted">Por favor ingrese Apellido</small>
+          <br>
+          <label for="bdate" class="form-label">Fecha de Nacimiento:</label>
+          <input type="date" class="form-control" name="bdate" id="" min="1902-01-01" max="2050-01-01" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" aria-describedby="help-bdate" placeholder="">
+          <small id="help-bdate" class="form-text text-muted">Por favor ingrese su fecha de nacimiento</small>
+          <br>
+          <label for="mail" class="form-label">Correo Electronico:</label>
+          <input type="mail" class="form-control" name="mail" id="" aria-describedby="helpId-mail" placeholder="">
+          <small id="helpId-mail" class="form-text text-muted">Por favor ingrese Correo Electronico</small>
+          <br>
+          <label for="passport" class="form-label">Pasaporte</label>
+          <input type="text" class="form-control" name="passport" id="" aria-describedby="help-passport" placeholder="">
+          <small id="help-passport" class="form-text text-muted">Por favor ingrese su pasaporte</small>
+          <br>
+          <button class="btn btn-primary mt-3" type="submit">enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

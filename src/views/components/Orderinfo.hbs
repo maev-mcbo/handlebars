@@ -1,0 +1,145 @@
+<div class="card text-uppercase shadow">
+  <div class="card-body ">
+    <div class="container text-uppercase">
+      <div class="row gx-2 justify-content">
+
+        <div class="col-md-6">
+          <p class="mb-0 fw-light">Nombre y Apellido:</p>
+          <div class="d-inline ">
+            <h4 class="mb-5 d-inline me-3 "> {{this.fname}} {{this.lname}} </h4>
+          </div>
+          {{!-- <div class=" d-inline ">
+            <a class=" btn btn-outline-info " href="#"><i class="fa fa-user"></i> Editar Datos</a>
+          </div> --}}
+          <p class="mb-0 mt-3 fw-light">Pasaporte:</p>
+          <div class="col-sm-6 d-inline ">
+            <h4 class="mb-0 d-inline me-3 "> {{this.passport}} </h4>
+          </div>
+          <div class="row justify-content-center">
+
+            <div class="col-6">
+              <p class="mb-0 mt-3 fw-light"><i class="fa fa-plane-departure"></i> Fecha de Salida</p>
+              <h4 class="mb-3 d-inline me-3 "> {{this.departuredate}} </h4>
+              <p class="mb-0 mt-3 fw-light"> <i class="fa fa-map-pin"></i> Origen:</p>
+              <h4 class="mb-0 d-inline me-3 "> {{this.originF}} </h4>
+            </div>
+
+            <div class="col-6">
+              <p class="mb-0 mt-3 fw-light"><i class="fa fa-plane-arrival"></i> Fecha de llegada:</p>
+              <h4 class="mb-0 d-inline me-3 "> {{this.arrivaldate}} </h4>
+              <p class="mb-0 mt-3 fw-light"> <i class="fa fa-map-pin"></i> Destino:</p>
+              <h4 class="mb-0 d-inline me-3 "> {{this.destf}} </h4>
+            </div>
+
+          </div>
+          <p class="mb-0 mt-3 fw-light"><i class="fa fa-cart-flatbed-suitcase"></i> Aerolinea:</p>
+          <h4 class="mb-0 d-inline me-3 "> {{this.airline}} </h4>
+
+          <p class="mb-0 mt-3 fw-light"><i class="fa fa-vial-virus"></i> Tipo de Prueba:</p>
+          <h4 class="mb-0 d-inline me-3 "> {{this.testtype}} </h4>
+          <p class="mb-0 mt-3 fw-light"><i class="fa fa-hand-holding-dollar"></i> Estatus del pago:</p>
+          <h4 class="mb-3 d-inline me-3 "> {{this.paymentStatus}} 
+            <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Agregar pago
+            </button>
+            <a class=" btn btn-outline-info " href="#"><i class="fa-solid fa-money-check-dollar-pen"></i> Editar
+              Pago</a>
+          </h4>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Agregar PAgo a la orden: {{this._id}}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="/order/payment/{{this._id}}" method="post">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <label for="paymenteAmaunt">
+                      <p class="mb-0 mt-1 fw-bold text-center"> Monto a pagar</p>
+                    </label>
+                    <br>
+                    <input name="paymenteAmauntform" id="paymentamount " type="number" class="form-control mb-3">
+                    <label for="payment">
+                      <p class="mb-0 mt-1 fw-bold text-center">Estado del Pago:</p>
+                    </label>
+                    <select id="payment" class="form-select" name="paymenteStatusform"
+                      aria-label="Default select example">
+                      <option selected disabled>Seleccione uno...</option>
+                      <option value="Aprobado">Aprobado</option>
+                      <option value="Rechazado">Rechazado</option>
+                    </select>
+                    <label for="currency">
+                      <p class="mb-0 mt-1 fw-bold text-center">Tipo de Moneda</p>
+                    </label>
+                    <select id="currency" class="form-select " name="currency" aria-label="Default select example">
+                      <option selected disabled>Seleccione uno...</option>
+                      <option value="dolares">Dolares</option>
+                      <option value="bolivares">Bolivares</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="submit" class="btn btn-info">Guardar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="col">
+          <p class="mb-0 mt-0 fw-light"> Id de la orden:</p>
+          <h4 id="infoqr" class="mb-3 d-inline me-3 "> {{this._id}}</h4>
+          <p class="mb-0 mt-3 fw-light"><i class="fa fa-user-id"></i> Cedula:</p>
+          <h4 class="mb-3 d-inline me-3 "> {{this.personalID}} </h4>
+          <p class="mb-0 mt-3 fw-light"><i class="fa fa-mobile-phone"></i> Numero de Telefono:</p>
+          <h4 class="mb-3 d-inline me-3 "> {{this.phone}} </h4>
+          <p class="mb-0 mt-3 fw-light"><i class="fa-solid fa-person-half-dress"></i> Genero:</p>
+          <h4 class="mb-3 d-inline me-3 "> {{this.gender}} </h4>
+          <div class="row justify-content-center mt-3">
+            <div class="col-6">
+              <div id="sampleresult" class="card">
+                <p class="mb-0 mt-3 fw-bold text-center"><i class="fa fa-virus-covid"></i> Resultado:</p>
+                <h2 class="m-3 d-inline me-3 text-center"> {{this.testresult}} </h2>
+              </div>
+
+            </div>
+            <div class="col">
+              <label for="covidresult">
+                <p class="mb-0 mt-1 fw-bold text-center"><i class="fa fa-microscope"></i> Evaluar Muestra:</p>
+              </label>
+              <form action="/order/covidresult/{{this._id}}" method="post">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <select id="covidresult" class="form-select" name="covidresult" aria-label="Default select example">
+                  <option selected disabled>Seleccione Resultado</option>
+                  <option value="Negativo">Negativo</option>
+                  <option value="Positivo">Positivo</option>
+                  <option value="Anulado">Anular Orden</option>
+
+                </select>
+                <button type="submit" for="covidresult" class="mt-1 btn btn-outline-info "><i
+                    class="fa-solid fa-money-check-dollar-pen"></i> CONFIRMAR RESULTADO </button>
+              </form>
+
+
+            </div>
+          </div>
+          <div class="container d-inline ">
+            <div class="row align-items-center justify-content-center">
+              <div class="col ">
+                <a href="/pdf/{{this._id}}" target="_blank" class="btn btn-info">IMPRIMIR RESULTADO</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

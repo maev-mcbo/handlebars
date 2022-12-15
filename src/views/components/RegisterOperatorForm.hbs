@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>Registrar Operador</h1>
+      <form action="/auth/singup" method="post">
+       <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <div class="mb-3 form-control">
+          <label for="username" class="form-label">Nombre de Usuario</label>
+          <input type="text" class="form-control" name="username" id="" aria-describedby="help-fname" placeholder="">
+          <small id="help-name" class="form-text text-muted">Por favor ingrese username</small>
+          <br>
+
+          <label for="mail" class="form-label">Correo Electronico:</label>
+          <input type="text" class="form-control" name="mail" id="" aria-describedby="helpId-mail" placeholder="">
+          <small id="helpId-mail" class="form-text text-muted">Por favor ingrese Correo Electronico</small>
+
+          <br>
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" name="password" id="" aria-describedby="help-password"
+            placeholder="">
+          <small id="help-password" class="form-text text-muted">Por favor ingrese su contraseña</small>
+          <br>
+          <label for="repass" class="form-label">Confirmar Contraseña</label>
+          <input type="password" class="form-control" name="repass" id="" aria-describedby="help-password"
+            placeholder="">
+          <small id="help-password" class="form-text text-muted">Por favor repita su contraseña</small>
+          <br>
+          <br>
+          <button class="btn btn-outline-info" type="submit">Registrar Usuario</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

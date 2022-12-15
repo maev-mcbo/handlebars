@@ -1,0 +1,21 @@
+<div class="container">
+        <div class="row justify-content-center">
+                <div class="col-md-8">
+                        <h1>Login</h1>
+                        <div class="form-control mb-3 shadow">
+                                <form action="/auth/login" method="POST">
+                                 <input type="hidden" name="_csrf" value="{{csrfToken}}" >
+                                        <label for="mail">Ingrese el correo</label>
+                                        <input class="form-control mb-3" name="mail" type="text"
+                                                placeholder="Correo electronico">
+                                        <label for="password">Constraseña</label>
+                                        <input class="form-control mb-3"  type="password" name="password"
+                                                placeholder="Contraseña">
+                                        <button class="btn btn-outline-info mt-3 mb-3" type="submit">Iniciar Sesión</button>
+                                </form>
+                        
+                        </div>
+                        <p>Si no tienes cuenta puedes <a href="/auth/singup" class="btn btn-outline-info"> Registrarte aqui </a> </p>
+                </div>
+        </div>
+</div>

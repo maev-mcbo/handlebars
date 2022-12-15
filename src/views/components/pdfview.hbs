@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    {{!--
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> --}}
+    <title>{{data.fname}} {{data.lname}}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+
+
+</head>
+
+<body
+    class="text-uppercase d-xxl-flex justify-content-center align-items-center align-self-center mx-auto justify-content-xxl-center align-items-xxl-center"
+    style="background: url(&quot;/assets/img/svg.png&quot;) bottom / cover space, #ffffff;height: 100vh;width: 100vw;">
+    <div class="container-fluid pe-5 ps-5 ">
+        <div class="row">
+            <div class="col-md-6 col-xl-9"><img src="/assets/img/image-removebg-preview%20(1).png"
+                    style="width: 400px;height: 95px;margin-top: 10px;">
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div id="qrcode" style="float: right; padding-top: 20px" class="m-2"></div>
+            </div>
+            
+            {{#iseq data.expired "1"}}
+            <div class="position-relative" >
+                <div class="position-absolute top-50 start-50 translate-middle text-warp">
+                    <h1 class="badge bg-danger shadow text-wrap progress-bar progress-bar-striped fs-1" style="color: rgb(255, 255, 255);   transform: rotate(-45deg); margin-top: 75% ">
+                        CADUCADO  EXPIRED
+                    </h1>
+                </div>
+            </div>
+            {{/iseq}}
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">
+                <p style="text-align: left; font-size: 15px;">
+                    PASAPORTE <strong>/ PASSPORT</strong><br>{{data.passport}}<br><br>
+                    Cédula<strong>/ ID</strong><br>{{data.personalID}}<br><br>
+                    PACIENTE<strong> / PATIENT</strong><br>{{data.fname}} {{data.lname}} <br><br>
+                    FECHA DE NACIMIENTO <strong>/ BIRTH DATE</strong><br>{{data.dob}}<br><br>
+                    EDAD <strong>/ AGE</strong><br>{{data.age}}<br><br>
+                    SEXO <strong>/ GENDER</strong><br>{{data.gender}}<br><br>
+                    TELÉFONO <strong>/ PHONE</strong><br>{{data.phone}}<br><br>
+                    DIRECCIÓN <strong>/ ADDRESS</strong><br>{{data.address}}<br>
+                </p>
+            </div>
+            <div class="col-md-6 pt-2 text-end"
+                style="border-radius: 27px;border-style: dotted;padding: 13px;height: 270px;    margin-top: 20px">
+                <div class="row">
+                    <div class="col">
+                        <div style="margin-bottom: -20px;">
+                            
+                            <p>DESCRIPCIÓN DEL EXAMEN / EXAM
+                            DESCRIPTION<br>SARS-CoV2<br>TIPO DE EXAMEN / SAMPLE TYPE<br>Hisopado Nasofaríngeo /
+                            Nasopharyngeal Swab<br></p>
+
+                            {{#iseq data.testtype "pcr"}}
+                            PCR Molecular / Molecular PCR
+                            {{/iseq}}
+                            {{#iseq data.testtype "antigeno"}}
+                            Antígeno / Antigeno
+                            {{/iseq}}
+
+
+
+                            <br><br>
+                        </div>
+                        <p style="margin-bottom: -20px;">RESULTADO / RESULT</p>
+                        <span style="font-size: 45px;margin-top: 10px;" class="text-uppercase">
+
+                            {{#iseq data.testresult "Negativo"}}
+                            <h1 style="margin-top: 15px;"> <i class="fa fa-minus"> </i> NEGATIVO </h1>
+                            {{/iseq}}
+
+                            {{#iseq data.testresult "Positivo"}}
+                            <h1 style="margin-top: 15px;color: red"><i class="fa fa-plus"> </i> POSITIVO</h1>
+                            {{/iseq}}
+                            {{#iseq data.testresult "pendiente"}}
+                            <h1 style="margin-top: 15px;color: rgb(91, 91, 91)" ></i> PENDIENTE</h1>
+                            {{/iseq}}
+                        </span>
+                        <p style="text-align: right; font-size: 13px;">FECHA DEL EXAMEN / SAMPLE RUN <br>
+                        <span>{{data.fecha}} {{data.hora}} </span>
+                        </p>
+
+                    </div>
+                </div>
+                <div style="text-align: right; font-size:small">
+                    <p>DESCRIPCIÓN DEL EXAMEN / TEST DESCRIPTION</p>
+                    {{#iseq data.testtype "pcr"}}
+                    <p style="text-align: right; font-size:x-small">
+                        Se realizó detección de
+                    SARS-CoV2, mediante amplificación isotérmica en termociclador para PCR en tiempo real, utilizando
+                    indicadores específicos para la región conservada Nsp15 .que codifica una proteína no estructural
+                    con actividad endoribonucleasa<br><br> Detection of SARS-CoV2, was performed by isothermal
+                    amplification in a real-time PCR thermocycler, using specific primers for the conserved region
+                    Nsp15, which encodes a non-structural protein with endoribonuclease activity<br>
+                    </P>
+                    {{/iseq}}
+                    {{#iseq data.testtype "antigeno"}}
+                    <p style="text-align: right; font-size:x-small">
+                        Se realizó test para la determinación cualitativa de antígenos para el SARS-CoV-2, virus que causa
+                    el COVID-19 (coronavirus del síndrome respiratorio agudo severo 2) en muestra de hisopo
+                    nasofaríngeo. Solo para diagnóstico in vitro. Bajo metodología inmunocromatografía.<br><br>
+                    Tests were performed for the qualitative determination of antigens for SARS-CoV-2, a virus that
+                    causes COVID-19 (severe acute respiratory syndrome coronavirus) in a nasopharyngeal swab sample.
+                    Only for in vitro diagnosis.
+                    Under immunochromatography methodology.
+                    </P>
+                    {{/iseq}}
+                </div>
+                <p style="text-align: right;margin-top: 20px"><img src="/assets/img/image-removebg-preview.png"
+                        style="width: 161px;height: 95px;"><br>Dr. Bad Bunny</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <script type="text/javascript">
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "{{data.url}}",
+            width: 128,
+            height: 128,
+            colorDark: "#000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+        integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+[
+  {$match: {paymentStatus: "Aprobado",currency: "bolivares" }},
+  {$group: {_id: "$_id", total: {$sum: "$paymenteAmaunt"}}}
+]

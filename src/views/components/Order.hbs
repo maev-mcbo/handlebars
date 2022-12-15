@@ -1,0 +1,67 @@
+
+<article class="shadow">
+      <div class="card-header">
+    <p class="mb-0"> <span class="fw-bold"> Orden Numero: </span> {{this._id}} </p>
+  </div>
+    <div class="container mb-3 card p-5">
+        <div class="row align-items-start ">
+            <div class="col lh-1">
+                
+                <h4> Datos del Paciente</h4>
+                <p class="lh-1 text-capitalize "><i class="fa fa-user"></i><em class="fw-bold"> Nombre:</em>
+                    {{this.fname}} {{this.lname}} </p>
+                <p class="lh-1"> <i class="fa fa-id-card"></i> <em class="fw-bold">Cedula:</em> {{this.personalID}} </p>
+                <p class="lh-1"> <i class="fa fa-passport"></i> <em class="fw-bold"> Pasaporte:</em> {{this.passport}}
+                </p>
+                <p class="lh-1"><i class="fa fa-envelope"></i> <em class="fw-bold"> Correo:</em> {{this.mail}} </p>
+            </div>
+            <div class="col">
+                <h5>Tipo de Estudio</h5>
+                <p class="lh-1 text-uppercase" class="badge bg-primary" >Prueba: {{this.testtype}} </p>
+                <p class="lh-1 text-uppercase" class="badge bg-primary" >Resultado: {{this.testresult}}</p>
+              
+                   
+   
+                </p>
+            </div>
+            <div class="col align-items-center">
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <a type="button" class="btn btn-info" href="/order/orderdetail/{{this._id}}"> <i class="fa-solid fa-eye"></i> Detalles</a>
+                    <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletemodal"> <i class="fa-solid fa-trash-can"></i> Borrar</a>
+
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Más
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <li><a class="dropdown-item" href="/order/scan/{{this._id}}"><i class="fa-solid fa-print"></i> Imprimir</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-at"></i> Enviar por Correo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+</article>
+
+ {{!-- href="/order/deleteOrder/{{this._id}}" --}}
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminar Orden</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Esta seguro que desea eliminar la orde {{this._id}}</h5>
+                <div class="div modal-footer">
+                <a class="btn btn-outline-danger " href="/order/deleteOrder/{{this._id}}">Confirmar</a>
+                <a class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
